@@ -1,30 +1,32 @@
-def add(x, y):
-    return x + y
+from tkinter import *
 
-def subtract(x, y):
-    return x - y
+def add():
+    result.set(float(num1.get()) + float(num2.get()))
 
-def multiply(x, y):
-    return x * y
+def subtract():
+    result.set(float(num1.get()) - float(num2.get()))
 
-def divide(x, y):
-    return x / y
+def multiply():
+    result.set(float(num1.get()) * float(num2.get()))
 
-num1 = float(input("Enter first number: "))
-num2 = float(input("Enter second number: "))
-operation = input("Enter operation (add, subtract, multiply, divide): ")
-print(operation)
+def divide():
+    result.set(float(num1.get()) / float(num2.get()))
 
-if operation == "add":
-    result = add(num1,num2)
-    print("Result:", add(num1, num2))
-elif operation == "subtract":
-    print("Result:", subtract(num1, num2))
-elif operation == "multiply":
-    print("Result:", multiply(num1, num2))
-elif operation == "divide":
-    print("Result:", divide(num1, num2))
-else:
-    print("Invalid operation")
+root = Tk()
+root.title("Calculator")
 
+num1 = Entry(root)
+num1.grid(row=0, column=1)
+num2 = Entry(root)
+num2.grid(row=1, column=1)
 
+result = DoubleVar()
+Label(root, text="Result:").grid(row=4, column=0)
+Label(root, textvariable=result).grid(row=4, column=1)
+
+Button(root, text="Add", command=add).grid(row=2, column=0)
+Button(root, text="Subtract", command=subtract).grid(row=2, column=1)
+Button(root, text="Multiply", command=multiply).grid(row=3, column=0)
+Button(root, text="Divide", command=divide).grid(row=3, column=1)
+
+root.mainloop()
